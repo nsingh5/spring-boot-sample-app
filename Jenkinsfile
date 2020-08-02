@@ -28,25 +28,47 @@ pipeline {
             // Run the sonar scan
             steps {
                 script {
-                    withSonarQubeEnv {
-
-                        bat "mvn  verify sonar:sonar -Dsonar.host.url=http://localhost:9000/ -Dmaven.test.failure.ignore=true"
-                    }
+                    try {    
+                        withSonarQubeEnv {
+                            bat "mvn  verify sonar:sonar -Dsonar.host.url=http://localhost:900/ -Dmaven.test.failure.ignore=true"            
+                        }
+                        } catch (err) {
+                            echo err.getMessage()
+                        }
                 }
             }
         }
                 // waiting for sonar results based into the configured web hook in Sonar server which push the status back to jenkins
         stage('Sonar scan result check') {
             steps {
-                timeout(time: 2, unit: 'MINUTES') {
-                    retry(3) {
-                        script {
-                            def qg = waitForQualityGate()
-                            if (qg.status != 'OK') {
-                                echo "Pipeline aborted due to quality gate failure: ${qg.status}"
+                 try {  
+                    timeout(time: 2, unit: 'MINUTES') {
+                        retry(3) {
+                            script {
+                                def qg = waitForQualityGate()
+                                if (qg.status != 'OK') {
+                                    echo "Pipeline aborted due to quality gate failure: ${qg.status}"
+                                }
                             }
                         }
-                    }
+                  } catch (err) {
+                    echo err.getMessage()
+                 }
+                }
+            }
+        }
+        
+        stage('fortify scan execution') {
+            // Run the sonar scan
+            steps {
+                script {
+                    try {    
+                        withSonarQubeEnv {
+                        //    bat "mvn  verify sonar:sonar -Dsonar.host.url=http://localhost:9000/ -Dmaven.test.failure.ignore=true"            
+                        }
+                        } catch (err) {
+                            echo err.getMessage()
+                        }
                 }
             }
         }
