@@ -24,5 +24,16 @@ pipeline {
             }
            
         }
+        stage('Sonar scan execution') {
+            // Run the sonar scan
+            steps {
+                script {
+                    withSonarQubeEnv {
+
+                        bat "mvn  verify sonar:sonar -Dintegration-tests.skip=true -Dmaven.test.failure.ignore=true"
+                    }
+                }
+            }
+        }
     }
 }
