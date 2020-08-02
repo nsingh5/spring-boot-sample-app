@@ -64,10 +64,8 @@ pipeline {
             // Run the sonar scan
             steps {
                 script {
-                     
-                        withSonarQubeEnv {
-                       try {    //    bat "mvn  verify sonar:sonar -Dsonar.host.url=http://localhost:9000/ -Dmaven.test.failure.ignore=true"            
-                       
+                       try {  
+                           fortifyScan addJVMOptions: '', addOptions: '', buildID: 'test', customRulepacks: '', logFile: '', maxHeap: '', resultsFile: 'testresult'
                         } catch (err) {
                             echo err.getMessage()
                         }
