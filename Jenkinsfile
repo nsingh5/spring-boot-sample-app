@@ -11,7 +11,7 @@ pipeline {
         stage ('Build') {
             steps {
                bat "dir"
-              bat "mvn build -Dmaven.test.skip=true"
+              bat "mvn install -Dmaven.test.skip=true"
                //fortifyClean addJVMOptions: '', buildID: 'test', logFile: '', maxHeap: ''
             }
            
