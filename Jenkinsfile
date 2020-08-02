@@ -27,14 +27,15 @@ pipeline {
         stage('Sonar scan execution') {
             // Run the sonar scan
             steps {
-                script {
-                    try {    
+                script {  
                         withSonarQubeEnv {
+                            
+                    try {  
                             bat "mvn  verify sonar:sonar -Dsonar.host.url=http://localhost:900/ -Dmaven.test.failure.ignore=true"            
-                        }
                         } catch (err) {
                             echo err.getMessage()
                         }
+                 }
                 }
             }
         }
