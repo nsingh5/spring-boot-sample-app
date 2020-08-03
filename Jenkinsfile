@@ -15,8 +15,8 @@ pipeline {
             steps {
                 script {
                 def mvnHome = tool 'Maven 3.3'
-               sh "ls"
-              sh "'${mvnHome}/bin/mvn' install -Dmaven.test.skip=true"
+               bat "ls"
+              bat "'${mvnHome}/bin/mvn' install -Dmaven.test.skip=true"
                //fortifyClean addJVMOptions: '', buildID: 'test', logFile: '', maxHeap: ''
             }
             }
@@ -25,8 +25,8 @@ pipeline {
             steps {
                 script {
                 def mvnHome = tool 'Maven 3.3'
-               sh "ls"
-              sh "'${mvnHome}/bin/mvn' test"
+               bat "ls"
+              bat "'${mvnHome}/bin/mvn' test"
                //fortifyClean addJVMOptions: '', buildID: 'test', logFile: '', maxHeap: ''
                 }}
            
@@ -39,7 +39,7 @@ pipeline {
                         withSonarQubeEnv {
                             
                     try {  
-                             sh "'${mvnHome}/bin/mvn'  verify sonar:sonar -Dsonar.host.url=https://sonarqube.dhl.com/ -Dmaven.test.failure.ignore=true"            
+                             bat "'${mvnHome}/bin/mvn'  verify sonar:sonar -Dsonar.host.url=https://sonarqube.dhl.com/ -Dmaven.test.failure.ignore=true"            
                         } catch (err) {
                             echo err.getMessage()
                         }
