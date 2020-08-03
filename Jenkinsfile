@@ -40,7 +40,7 @@ pipeline {
                             if (isUnix()) {
                                 sh "'${mvnHome}/bin/mvn'  sonar:sonar  -Dsonar.projectKey=DGFChatbot  -Dsonar.host.url=https://sonarqube.dhl.com  -Dsonar.login=4d77e8116d228811203c828c59ee74cffedad3b8 -Dmaven.test.failure.ignore=true"
                             } else {
-                                bat(/"${mvnHome}\bin\mvn"  sonar:sonar  -Dsonar.projectKey=DGFChatbot  -Dsonar.host.url="https://sonarqube.dhl.com" -Dsonar.login=4d77e8116d228811203c828c59ee74cffedad3b8 -Dmaven.test.failure.ignore=true/)
+                                //bat(/"${mvnHome}\bin\mvn"  sonar:sonar  -Dsonar.projectKey=DGFChatbot  -Dsonar.host.url="https://sonarqube.dhl.com" -Dsonar.login=4d77e8116d228811203c828c59ee74cffedad3b8 -Dmaven.test.failure.ignore=true/)
                             }
 
                         } catch (err) {
