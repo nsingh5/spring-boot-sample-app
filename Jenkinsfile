@@ -39,7 +39,7 @@ pipeline {
                         withSonarQubeEnv {
                             
                     try {  
-                             sh "'${mvnHome}/bin/mvn'  verify sonar:sonar -Dsonar.host.url=http://23.252.216.108:9007 -Dmaven.test.failure.ignore=true"            
+                             sh "'${mvnHome}/bin/mvn'  verify sonar:sonar -Dsonar.host.url=https://sonarqube.dhl.com/ -Dmaven.test.failure.ignore=true"            
                         } catch (err) {
                             echo err.getMessage()
                         }
