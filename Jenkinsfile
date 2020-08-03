@@ -1,10 +1,12 @@
 pipeline {
-    agent {  maven 'Maven 3.3'}
+    agent  any
 
     stages {
         stage ('Initialize') {
             steps {
+                def mvnHome = tool 'Maven 3.3'
                echo "initailting"
+                echo "${mvnHome}"
             }
         }
 
