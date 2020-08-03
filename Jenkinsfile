@@ -15,7 +15,6 @@ pipeline {
             steps {
                 script {
                 def mvnHome = tool 'Maven 3.3'
-               bat "ls"
               bat "'${mvnHome}/bin/mvn' install -Dmaven.test.skip=true"
                //fortifyClean addJVMOptions: '', buildID: 'test', logFile: '', maxHeap: ''
             }
@@ -25,7 +24,6 @@ pipeline {
             steps {
                 script {
                 def mvnHome = tool 'Maven 3.3'
-               bat "ls"
               bat "'${mvnHome}/bin/mvn' test"
                //fortifyClean addJVMOptions: '', buildID: 'test', logFile: '', maxHeap: ''
                 }}
