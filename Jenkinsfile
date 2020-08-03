@@ -10,16 +10,16 @@ pipeline {
 
         stage ('Build') {
             steps {
-               bat "dir"
-              bat "mvn install -Dmaven.test.skip=true"
+               sh "ls"
+              sh "mvn install -Dmaven.test.skip=true"
                //fortifyClean addJVMOptions: '', buildID: 'test', logFile: '', maxHeap: ''
             }
            
         }
          stage ('unit test') {
             steps {
-               bat "dir"
-              bat "mvn test"
+               sh "ls"
+              sh "mvn test"
                //fortifyClean addJVMOptions: '', buildID: 'test', logFile: '', maxHeap: ''
             }
            
@@ -31,7 +31,7 @@ pipeline {
                         withSonarQubeEnv {
                             
                     try {  
-                            bat "mvn  verify sonar:sonar -Dsonar.host.url=http://localhost:900/ -Dmaven.test.failure.ignore=true"            
+                            sh "mvn  verify sonar:sonar -Dsonar.host.url=http://localhost:900/ -Dmaven.test.failure.ignore=true"            
                         } catch (err) {
                             echo err.getMessage()
                         }
