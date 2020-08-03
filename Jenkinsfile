@@ -4,10 +4,11 @@ pipeline {
     stages {
         stage ('Initialize') {
             steps {
+                script {
                 def mvnHome = tool 'Maven 3.3'
                echo "initailting"
                 echo "${mvnHome}"
-            }
+                }}
         }
 
         stage ('Build') {
