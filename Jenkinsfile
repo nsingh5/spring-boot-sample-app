@@ -13,28 +13,33 @@ pipeline {
 
         stage ('Build') {
             steps {
+                script {
+                def mvnHome = tool 'Maven 3.3'
                sh "ls"
-              sh "mvn install -Dmaven.test.skip=true"
+              sh "'${mvnHome}/bin/mvn' install -Dmaven.test.skip=true"
                //fortifyClean addJVMOptions: '', buildID: 'test', logFile: '', maxHeap: ''
             }
-           
+            }
         }
          stage ('unit test') {
             steps {
+                script {
+                def mvnHome = tool 'Maven 3.3'
                sh "ls"
-              sh "mvn test"
+              sh "'${mvnHome}/bin/mvn' test"
                //fortifyClean addJVMOptions: '', buildID: 'test', logFile: '', maxHeap: ''
-            }
+                }}
            
         }
         stage('Sonar scan execution') {
             // Run the sonar scan
             steps {
                 script {  
+                def mvnHome = tool 'Maven 3.3'
                         withSonarQubeEnv {
                             
                     try {  
-                            sh "mvn  verify sonar:sonar -Dsonar.host.url=http://localhost:900/ -Dmaven.test.failure.ignore=true"            
+                             sh "'${mvnHome}/bin/mvn'  verify sonar:sonar -Dsonar.host.url=http://localhost:900/ -Dmaven.test.failure.ignore=true"            
                         } catch (err) {
                             echo err.getMessage()
                         }
