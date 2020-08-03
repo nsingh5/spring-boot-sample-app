@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {  maven 'Maven 3.3'}
 
     stages {
         stage ('Initialize') {
