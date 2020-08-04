@@ -10,7 +10,7 @@ pipeline {
                         sh "'${mvnHome}/bin/mvn' -Dmaven.test.skip=true clean compile"
 
                     } else {
-                        bat(/"${mvnHome}\bin\mvn" -Dmaven.test.skip=true clean compile/)
+                        bat(/"${mvnHome}\bin\mvn" test/)
                     }
                 }
             }
