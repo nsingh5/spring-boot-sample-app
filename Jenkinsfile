@@ -7,10 +7,10 @@ pipeline {
                     echo 'Pulling...' + env.BRANCH_NAME
                     def mvnHome = tool 'Maven 3.3'
                     if (isUnix()) {
-                        sh "'${mvnHome}/bin/mvn' -Dmaven.test.skip=true clean install"
+                        sh "'${mvnHome}/bin/mvn' -Dmaven.test.skip=true clean compile"
 
                     } else {
-                        bat(/"${mvnHome}\bin\mvn" -Dmaven.test.skip=true clean install/)
+                        bat(/"${mvnHome}\bin\mvn" -Dmaven.test.skip=true clean compile/)
                     }
                 }
             }
